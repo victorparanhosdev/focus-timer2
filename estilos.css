@@ -1,0 +1,84 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+  background: #FFFFFF;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  
+}
+main {
+  display: flex;
+  width: 82.1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.caixa-timer {
+  display: flex;
+  font-weight: 500;
+  text-align: center;
+  color: #323238;
+  font-size: 12.61rem;
+
+}
+
+
+.caixa-direita {
+  display: grid;
+  gap: 3.2rem;
+  grid-template-columns: 1fr 1fr;
+}
+.caixa-direita div {
+  border-radius: 2.4rem;
+  background-color: #E1E1E6;
+  width: 13.8rem;
+  height: 15.2rem;
+  display: grid;
+  place-content: center;
+  transition: background 0.2s linear;
+  cursor: pointer;
+  
+
+
+}
+
+.caixa-direita div:hover, .caixa-direita div:hover svg path {
+  background: #02799D;
+  transition: background 0.2s ease-out;
+  fill: white;
+}
+
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
+.controls{
+  margin-top: 1.7rem;;
+  display: flex;
+
+  justify-content: center;
+  gap: 4rem;
+
+}
+body.floresta .floresta {
+  background: linear-gradient(310deg, #508150 10%, #c3e1b6 100%)
+}
+body.floresta {
+  background: linear-gradient(310deg, #508150 10%, #c3e1b6 100%)
+}
+
+body.lareira {
+  background: linear-gradient(310deg, #db480e 10%, #e3d323 100%)
+}
