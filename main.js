@@ -4,13 +4,21 @@ const Botao = {
   play: document.querySelector('.btn-play'),
   stop: document.querySelector('.btn-stop'),
   mais: document.querySelector('.btn-over'),
-  menos: document.querySelector('btn-under'),
+  menos: document.querySelector('.btn-under'),
   floresta: document.querySelector('.floresta'),
   chuva: document.querySelector('.chuva'),
   cafeteria: document.querySelector('.cafeteria'),
   lareira: document.querySelector('.lareira'),
   corpo: document.querySelector('body'),
+  buttonPressAudio: new Audio("https://github.com/maykbrito/automatic-video-creator/blob/master/audios/button-press.wav?raw=true"),
+  AlarmeAudio: new Audio("https://github.com/maykbrito/automatic-video-creator/blob/master/audios/kichen-timer.mp3?raw=true"),
 }
+
+function updateDisplay(min = Botao.minutos.textContent, seg = Botao.segundos.textContent) {
+    Botao.minutos.textContent = String(min).padStart(2, "0")
+    Botao.segundos.textContent = String(seg).padStart(2, "0")
+}
+
 
 const Sound = {
   floresta: new Audio("./files/Floresta.wav"),
@@ -18,15 +26,70 @@ const Sound = {
   cafeteria: new Audio("./files/Cafeteria.wav"),
   lareira: new Audio("./files/lareira.wav"),
 }
+let resetTimer;
 
+function countDown(){
 
+  if(Botao.segundos.textContent < 0){
+    updateDisplay(Number(Botao.minutos.textContent)-1)
+    Botao.segundos.textContent = 59 
+    
+  }
+  if(Botao.minutos.textContent < 0){
+      Botao.AlarmeAudio.play()
+      clearTimeout(resetTimer)
+      Botao.minutos.textContent = "00"
+      Botao.segundos.textContent = "00"
+      return
+  }
+  
+  
+  resetTimer = setTimeout(()=>{
+
+    updateDisplay(Botao.minutos.textContent, Number(Botao.segundos.textContent)-1)
+    countDown()
+    
+  }, 1000)
+
+ 
+}
+
+Botao.play.addEventListener('click', ()=> { 
+  Botao.buttonPressAudio.play()
+  countDown()
+  
+})
+Botao.stop.addEventListener('click', ()=> { 
+  Botao.buttonPressAudio.play()
+  clearTimeout(resetTimer)
+
+  
+})
+
+Botao.mais.addEventListener('click', ()=> { 
+  Botao.buttonPressAudio.play()
+  updateDisplay(Botao.minutos.textContent = Number(Botao.minutos.textContent) + 5)
+
+  
+  
+})
+Botao.menos.addEventListener('click', ()=> {
+  if(Botao.minutos.textContent > 0){
+    Botao.buttonPressAudio.play()
+    updateDisplay(Botao.minutos.textContent = Number(Botao.minutos.textContent) - 5)
+  }
+ 
+  
+})
 
 
 Botao.floresta.addEventListener('click', ()=>{
+  
   Botao.corpo.classList.add('floresta')
   Botao.corpo.classList.remove('lareira')
   Botao.corpo.classList.remove('cafeteria')
   Botao.corpo.classList.remove('chuva')
+
   
   Sound.chuva.pause()
   Sound.cafeteria.pause()
@@ -34,7 +97,6 @@ Botao.floresta.addEventListener('click', ()=>{
   Sound.floresta.play()
   
 })
-
 
 Botao.chuva.addEventListener('click', ()=>{
   Botao.corpo.classList.remove('floresta')
@@ -71,3 +133,4 @@ Botao.lareira.addEventListener('click', ()=>{
   Sound.lareira.play()
 
 })
+
