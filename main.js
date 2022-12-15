@@ -79,8 +79,6 @@ Botao.menos.addEventListener('click', ()=> {
     Botao.buttonPressAudio.play()
     updateDisplay(Botao.minutos.textContent = Number(Botao.minutos.textContent) - 5)
 
-  }else {
-    Botao.minutos.textContent = "00"
   }
  
   
