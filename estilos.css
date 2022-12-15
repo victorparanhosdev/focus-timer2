@@ -156,7 +156,7 @@ body.cafeteria .caixa-direita div:hover{
   
   main {
     display: grid;
-    gap: 7rem;
+    gap: 6rem;
     width: 100vw;
     place-content: center;
   }

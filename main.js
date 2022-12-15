@@ -74,9 +74,13 @@ Botao.mais.addEventListener('click', ()=> {
   
 })
 Botao.menos.addEventListener('click', ()=> {
-  if(Botao.minutos.textContent > 0){
+
+  if(Botao.minutos.textContent >= 5){
     Botao.buttonPressAudio.play()
     updateDisplay(Botao.minutos.textContent = Number(Botao.minutos.textContent) - 5)
+
+  }else {
+    Botao.minutos.textContent = "00"
   }
  
   
